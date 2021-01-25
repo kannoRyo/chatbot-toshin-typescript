@@ -10,9 +10,18 @@ import {businessHourArray} from './utils/dayjs'
 
 const dayjs = require('dayjs')
 
+type answerType = {
+  content: string,
+  nextId: string
+} 
+
+type answersType = [
+  answerType[] 
+] 
+
 const App = ()=> {
   const [chats, setChats] = useState<any>([])
-  const [answers, setAnswers] = useState([])
+  const [answers, setAnswers] = useState<answersType | [] >([])
   const [currentId, setcurrentId] = useState('init')
   const [dataset, setDetaset] = useState<any>(defaultDataset)
   const [open, setOpen] = useState(false)
@@ -43,7 +52,10 @@ const App = ()=> {
   }
 
   const initAnswer = ()=>{
-    const initAnswer = dataset[currentId].answers
+    const initAnswer:[{
+      content: string,
+      nextId: string
+    }[]] = dataset[currentId].answers
     setAnswers(initAnswer)
   }
   
@@ -65,7 +77,7 @@ const App = ()=> {
     scroll.scrollTop = scroll.scrollHeight
   })
 
-  const nextDisplayQuestion = (nextId: any)=>{
+  const nextDisplayQuestion = (nextId: string)=>{
     addChat({
       text: dataset[nextId].question,
       type:'question'
@@ -74,8 +86,7 @@ const App = ()=> {
     setAnswers(dataset[nextId].answers)
   }
 
-  const selectAnswer = (selectedAnswer:any, nextId:any)=>{
-    console.log('click')
+  const selectAnswer = (selectedAnswer:string, nextId:string)=>{
     switch(true){
       case (selectedAnswer === 'init'):
         break;

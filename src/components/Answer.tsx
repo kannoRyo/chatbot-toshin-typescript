@@ -16,9 +16,9 @@ const useStyle = makeStyles({
 })
 
 type AnswerProps = {
-    content: any,
-    selectAnswer: any
-    nextId: any
+    content: string,
+    selectAnswer:  (selectedAnswer:string, nextId:string) => void ,
+    nextId: string
 }
 
 const Answer = (props: AnswerProps)=>{
