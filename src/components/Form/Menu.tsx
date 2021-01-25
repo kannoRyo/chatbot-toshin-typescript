@@ -16,9 +16,19 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
       minWidth: 120,
     },
-  }));
+}));
 
-const ExamMenu = (props:any)=>{
+type ExamMenuProps = {
+    menuOpen: boolean,
+    handleMenuToogle: () => void,
+    value: string,
+    style: any,
+    handleMenuChange: (e:any) => void
+    label: string,
+    menus: string[]
+}
+
+const ExamMenu = (props:ExamMenuProps)=>{
     const classes = useStyles();
     return(
         <>

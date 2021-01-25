@@ -22,7 +22,13 @@ const useStyle = makeStyles({
     }
 })
 
-const FormDialog = (props: any)=> {  
+type FormDialogProps = {
+    open: boolean,
+    handleClickClose: () =>  void,
+    isExam: boolean
+}
+
+const FormDialog = (props: FormDialogProps)=> {  
     const url = "https://hooks.slack.com/services/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" //Slack URL
     const classes = useStyle()
     
