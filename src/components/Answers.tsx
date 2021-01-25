@@ -16,7 +16,6 @@ type AnswersProps = {
 }
 
 const Answers = (props: AnswersProps)=>{
-    console.log(props.answers)
     return(
         <div className="c-grid__answer">
             {

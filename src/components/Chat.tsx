@@ -7,8 +7,8 @@ import ToshinIcon from '../assets/img/toshin-icon.jpg'
 import NoProfile  from '../assets/img/no-profile.png'
 
 type ChatProps = {
-	text: any,
-	type: any
+	text: string,
+	type: 'question' | 'answer'
 }
 
 const Chat = (props: ChatProps)=>{

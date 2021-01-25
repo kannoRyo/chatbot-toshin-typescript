@@ -19,6 +19,16 @@ type answersType = [
   answerType[] 
 ] 
 
+type chatType = {
+  text: string,
+  type: 'question' | 'answer'
+} 
+
+type chatsType = [
+  chatType[] 
+] 
+
+
 const App = ()=> {
   const [chats, setChats] = useState<any>([])
   const [answers, setAnswers] = useState<answersType | [] >([])
@@ -29,7 +39,7 @@ const App = ()=> {
   const [date, setDate] = useState('')
 
   const addChat = useCallback((chat)=>{
-    setChats((prevChats: any)  =>{
+    setChats((prevChats: chatsType)  =>{
       return [...prevChats, chat]
     })
   },[])
@@ -52,15 +62,13 @@ const App = ()=> {
   }
 
   const initAnswer = ()=>{
-    const initAnswer:[{
-      content: string,
-      nextId: string
-    }[]] = dataset[currentId].answers
+    console.log(dataset[currentId].answers)
+    const initAnswer:answersType = dataset[currentId].answers
     setAnswers(initAnswer)
   }
   
   const  initChats = ()=>{
-    const initQuestion = {
+    const initQuestion:chatType = {
       text: dataset[currentId].question ,
       type: 'question'
     }

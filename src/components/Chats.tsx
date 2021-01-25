@@ -10,6 +10,11 @@ const useStyle = makeStyles({
     }
 })
 
+type chatType = {
+    text: string,
+    type: 'question' | 'answer'
+  } 
+
 type ChatsProps = {
     chats: any
 }
@@ -20,7 +25,7 @@ const Chats = (props: ChatsProps)=>{
     return(
         <List  className={classes.listGgrid} id="scrollHeight">
             {
-                props.chats.map((chat:any ,index: any)=>{
+                props.chats.map((chat:chatType ,index: number)=>{
                    return  <Chat text={chat.text} type={chat.type}key={index}/>
                 })
             }
