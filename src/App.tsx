@@ -5,7 +5,7 @@ import {
   Chats
 } from './components/index'
 import defaultDataset from './dataset'
-// import {businessHourArray} from './utils/dayjs.js'
+import {businessHourArray} from './utils/dayjs'
 
 const dayjs = require('dayjs')
 
@@ -24,11 +24,11 @@ const App = ()=> {
     })
   },[])
 
-  // const todayBusiinessHour = ()=>{
-  //   const today = dayjs().format('MM/DD') 
-  //   const businessHour = businessHourArray[today] 
-  //   return businessHour
-  // }
+  const todayBusiinessHour = ()=>{
+    const today = dayjs().format('MM/DD') 
+    const businessHour = businessHourArray[today] 
+    return businessHour
+  }
 
   const handleClickOpen = ()=>{
     setOpen(true)
@@ -59,82 +59,82 @@ const App = ()=> {
     initAnswer()
   },[])
   
-  // useEffect(()=>{
-  //   const scroll = document.getElementById('scrollHeight')
-  //   scroll.scrollTop = scroll.scrollHeight
-  // })
+  useEffect(()=>{
+    const scroll = document.getElementById('scrollHeight') as HTMLElement
+    scroll.scrollTop = scroll.scrollHeight
+  })
 
-  // const nextDisplayQuestion = (nextId)=>{
-  //   addChat({
-  //     text: dataset[nextId].question,
-  //     type:'question'
-  //   })
-  //   setcurrentId(nextId)
-  //   setAnswers(dataset[nextId].answers)
-  // }
+  const nextDisplayQuestion = (nextId: any)=>{
+    addChat({
+      text: dataset[nextId].question,
+      type:'question'
+    })
+    setcurrentId(nextId)
+    setAnswers(dataset[nextId].answers)
+  }
 
   const selectAnswer = (selectedAnswer:any, nextId:any)=>{
     console.log('click')
-    // switch(true){
-    //   case (selectedAnswer === 'init'):
-    //     break;
-    //     case (nextId === 'contact'):
-    //       if(currentId === 'practiceExam'){
-    //         setIsExam(true)
-    //       }
-    //       handleClickOpen()
-    //     nextDisplayQuestion('init')
-    //     break;
+    switch(true){
+      case (selectedAnswer === 'init'):
+        break;
+        case (nextId === 'contact'):
+          if(currentId === 'practiceExam'){
+            setIsExam(true)
+          }
+          handleClickOpen()
+        nextDisplayQuestion('init')
+        break;
 
-    //   case ( nextId === "displaySelectedBussinessHours"): // 未実装
-    //     addChat({
-    //       text:'未実装です（使えません）',
-    //       type:'question'
-    //     })
-    //     nextDisplayQuestion('businessHours')
-    //     break;
-    //   case ( nextId === "displayTodayBussinessHours"):
-    //     addChat({
-    //       text: selectedAnswer,
-    //       type:'answer'
-    //     })
-    //     const todayBusinessHour = todayBusiinessHour()
-    //     setTimeout(()=>{
-    //       addChat({
-    //         text: `${todayBusinessHour}`,
-    //         type:'question'
-    //       })
-    //       nextDisplayQuestion('businessHours')
-    //     },750)
-    //     break;
-    //   case (　nextId === 'https://www.toshin.com/exams/'):
-    //     addChat({
-    //       text: "HPを別タブにて開きます",
-    //       type:'question'
-    //     })
-    //     nextDisplayQuestion('practiceExam')
-    //     const a2 = document.createElement('a')
-    //     a2.href =  nextId
-    //     a2.target = '__blank'
-    //     a2.click()
-    //     break;
-    //   case (/^https:*/.test(nextId)):
-    //     const a = document.createElement('a')
-    //     a.href =  nextId
-    //     a.target = '__blank'
-    //     a.click()
-    //     nextDisplayQuestion('init')
-    //     break;
-    //   default:
-    //     addChat({
-    //       text: selectedAnswer,
-    //       type:'answer'
-    //     })
+      case ( nextId === "displaySelectedBussinessHours"): // 未実装
+        addChat({
+          text:'未実装です（使えません）',
+          type:'question'
+        })
+        nextDisplayQuestion('businessHours')
+        break;
+      case ( nextId === "displayTodayBussinessHours"):
+        addChat({
+          text: selectedAnswer,
+          type:'answer'
+        })
+        const todayBusinessHour = todayBusiinessHour()
+        setTimeout(()=>{
+          addChat({
+            text: `${todayBusinessHour}`,
+            type:'question'
+          })
+          nextDisplayQuestion('businessHours')
+        },750)
+        break;
+      case (　nextId === 'https://www.toshin.com/exams/'):
+        addChat({
+          text: "HPを別タブにて開きます",
+          type:'question'
+        })
+        nextDisplayQuestion('practiceExam')
+        const a2 = document.createElement('a')
+        a2.href =  nextId
+        a2.target = '__blank'
+        a2.click()
+        break;
+      case (/^https:*/.test(nextId)):
+        const a = document.createElement('a')
+        a.href =  nextId
+        a.target = '__blank'
+        a.click()
+        nextDisplayQuestion('init')
+        break;
+      default:
+        addChat({
+          text: selectedAnswer,
+          type:'answer'
+        })
         
-    //     setTimeout(()=>{
-    //       nextDisplayQuestion(nextId)    
-    //     },750)
-    // }
+        setTimeout(()=>{
+          nextDisplayQuestion(nextId)    
+        },750)
+    }
   }
 
   return (
