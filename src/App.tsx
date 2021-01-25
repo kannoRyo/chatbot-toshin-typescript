@@ -2,9 +2,10 @@ import React,{useState,useEffect,useCallback} from 'react'
 import './assets/styles/style.css'
 import {
   Answers,
-  Chats
+  Chats,
 } from './components/index'
 import defaultDataset from './dataset'
+import FormDialog from './components/Form/FormDialog'
 import {businessHourArray} from './utils/dayjs'
 
 const dayjs = require('dayjs')
@@ -142,7 +143,7 @@ const App = ()=> {
       <div className="c-box">
         <Chats chats={chats}/>
         <Answers answers={answers} selectAnswer={selectAnswer}/>
-        {/* <FormDialog open={open} handleClickClose={handleClickClose} isExam={isExam}/> */}
+        <FormDialog open={open} handleClickClose={handleClickClose} isExam={isExam}/>
       </div>
     </section>
   );
