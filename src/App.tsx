@@ -2,6 +2,7 @@ import React,{useState,useEffect,useCallback} from 'react'
 import './assets/styles/style.css'
 import {
   Answers,
+  Chats
 } from './components/index'
 import defaultDataset from './dataset'
 // import {businessHourArray} from './utils/dayjs.js'
@@ -9,7 +10,7 @@ import defaultDataset from './dataset'
 const dayjs = require('dayjs')
 
 const App = ()=> {
-  const [chats, setChats] = useState([])
+  const [chats, setChats] = useState<any>([])
   const [answers, setAnswers] = useState([])
   const [currentId, setcurrentId] = useState('init')
   const [dataset, setDetaset] = useState<any>(defaultDataset)
@@ -17,11 +18,11 @@ const App = ()=> {
   const [isExam, setIsExam] = useState(false)
   const [date, setDate] = useState('')
 
-  // const addChat = useCallback((chat)=>{
-  //   setChats(prevChats=>{
-  //     return [...prevChats, chat]
-  //   })
-  // },[])
+  const addChat = useCallback((chat)=>{
+    setChats((prevChats: any)  =>{
+      return [...prevChats, chat]
+    })
+  },[])
 
   // const todayBusiinessHour = ()=>{
   //   const today = dayjs().format('MM/DD') 
@@ -45,16 +46,16 @@ const App = ()=> {
     setAnswers(initAnswer)
   }
   
-  // const  initChats = ()=>{
-  //   const initQuestion = {
-  //     text: dataset[currentId].question ,
-  //     type: 'question'
-  //   }
-  //   addChat(initQuestion)
-  // }
+  const  initChats = ()=>{
+    const initQuestion = {
+      text: dataset[currentId].question ,
+      type: 'question'
+    }
+    addChat(initQuestion)
+  }
 
   useEffect(()=>{
-    // initChats()
+    initChats()
     initAnswer()
   },[])
   
@@ -139,7 +140,7 @@ const App = ()=> {
   return (
     <section className="c-section">
       <div className="c-box">
-        {/* <Chats chats={chats}/> */}
+        <Chats chats={chats}/>
         <Answers answers={answers} selectAnswer={selectAnswer}/>
         {/* <FormDialog open={open} handleClickClose={handleClickClose} isExam={isExam}/> */}
       </div>

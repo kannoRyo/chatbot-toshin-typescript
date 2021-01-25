@@ -6,7 +6,7 @@ const useStyle = makeStyles({
     button:{
         marginBottom:'8px',
         padding:'8.5px',
-        // fontWeight:'600',
+        fontWeight:'bold',
         border:'1px solid #92b2e0',
         '&:hover':{
             backgroundColor:"#92b2e0",
